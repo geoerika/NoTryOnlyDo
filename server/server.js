@@ -5,11 +5,11 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const config = require('./config/dev');
 const Todo = require('./models/todo');
+const router = require('./routes');
 
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
-const router = express.Router();
 
 mongoose.set('useUnifiedTopology', true);
 
