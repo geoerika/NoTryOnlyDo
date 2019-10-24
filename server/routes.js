@@ -15,16 +15,17 @@ router.get('/getData', (req, res) => {
 router.post('/postData', (req, res) => {
   let data = new Todo();
 
-  const { id, title, description, status, dueDate } = req.body;
+  console.log('req.body: ', req.body);
 
-  if ((!id && id !== 0) || !title) {
+  const { title, description, status, dueDate } = req.body;
+
+  if (!title) {
     return res.json({
       success: false,
       error: 'INVALID INPUTS',
     });
   }
 
-  data.id = id;
   data.title = title;
   data.description = description;
   data.status = status;
