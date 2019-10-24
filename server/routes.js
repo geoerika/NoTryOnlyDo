@@ -23,6 +23,7 @@ router.post('/postData', (req, res) => {
       error: 'INVALID INPUTS',
     });
   }
+
   data.id = id;
   data.title = title;
   data.description = description;
