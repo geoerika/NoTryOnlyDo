@@ -16,6 +16,8 @@ class App extends Component {
   };
 
   componentDidMount() {
+
+    //gets data from the database every 1 secs
     this.getTodos();
     if (!this.state.intervalIsSet) {
       let interval = setInterval(this.getTodos, 1000);
@@ -72,18 +74,18 @@ class App extends Component {
       <div>
         <Navbar/>
         <div style={{height: '10px'}}></div>
-        <div className="container">
-          <div className="row">
-            <div className="col col-md-4">
+        <div className='container'>
+          <div className='row'>
+            <div className='col col-md-4'>
               <AddTask postDataToDB={this.postDataToDB}/>
             </div>
-            <div className="col col-md-4">
+            <div className='col col-md-4'>
               <h5 className='text-center font-weight-bold'>Pending Tasks</h5>
               <TaskList tasks={todoList} status='Pending'
                         deleteDataInDB={this.deleteDataInDB}
                         updateStatusInDB={this.updateStatusInDB}/>
             </div>
-            <div className="col col-md-4">
+            <div className='col col-md-4'>
               <h5 className='text-center font-weight-bold'>Completed Tasks</h5>
               <TaskList tasks={todoList} status='Done'
                         deleteDataInDB={this.deleteDataInDB}

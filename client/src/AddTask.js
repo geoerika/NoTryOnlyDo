@@ -39,13 +39,13 @@ class AddTask extends Component {
     if ((name === 'title') && !value) {
       this.setState({submitDisabled : true});
     };
-
   };
 
   //sends data to method in the App component which will send data to the database
   postTodo = (async () => {
     console.log('this.state: ', this.state);
-    await this.props.postDataToDB(this.state.title, this.state.description, this.state.status, this.state.dueDate);
+    await this.props.postDataToDB(this.state.title, this.state.description,
+                                  this.state.status, this.state.dueDate);
     this.resetState();
   });
 
@@ -69,9 +69,9 @@ class AddTask extends Component {
                       placeholder='Add description' name='description'
                       value={this.state.description} onChange={this.handleChange}/>
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label>Status</label>
-            <select className="form-control" value={this.state.status}
+            <select className='form-control' value={this.state.status}
                     name='status' onChange={this.handleChange}>
               <option>Pending</option>
               <option>Done</option>
@@ -84,7 +84,7 @@ class AddTask extends Component {
                    name='dueDate' onChange={this.handleChange}/>
           </div>
         </form>
-        <button type="submit" className="btn btn-primary"
+        <button type='submit' className='btn btn-primary'
                 disabled={this.state.submitDisabled}
                 onClick={this.postTodo}>Add task
         </button>
