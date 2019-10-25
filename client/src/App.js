@@ -6,20 +6,23 @@ import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 
 class App extends Component {
+
+  uri = process.env.REACT_APP_API_ENDPOINT;
+
   // initialize our state
   state = {
     todoList: [],
     intervalIsSet: false,
     idToDelete: null,
     idToUpdate: null,
-    objectToUpdate: null,
+    objectToUpdate: null
   };
 
   componentDidMount() {
 
     //gets data from the database every 1 secs
     this.getTodos();
-    if (!this.state.intervalIsSet) {
+    if (!this.intervalIsSet) {
       let interval = setInterval(this.getTodos, 1000);
       this.setState({ intervalIsSet: interval });
     }
@@ -35,7 +38,7 @@ class App extends Component {
 
   // fetch data from database
   getTodos = () => {
-    fetch('http://localhost:3001/api/getData')
+    fetch(`${this.uri}/api/getData`)
       .then((data) => data.json())
       .then((res) => this.setState({ todoList: res.data }));
   };
@@ -43,7 +46,7 @@ class App extends Component {
   //create new record in the database
   postDataToDB = (title, description, status, dueDate) => {
 
-    axios.post('http://localhost:3001/api/postData', {
+    axios.post(`${this.uri}/api/postData`, {
       title: title,
       description: description,
       status: status,
@@ -53,7 +56,7 @@ class App extends Component {
 
   //delete a task in the database
   deleteDataInDB = (taskId) => {
-    axios.delete('http://localhost:3001/api/deleteData', {
+    axios.delete(`${this.uri}/api/deleteData`, {
       data: {
         _id: taskId,
       },
@@ -62,7 +65,7 @@ class App extends Component {
 
   //updates the status of a task in the database
   updateStatusInDB = (taskId) => {
-    axios.put('http://localhost:3001/api/updateDataStatus', {
+    axios.put(`${this.uri}/api/updateDataStatus`, {
       _id: taskId,
       update: { status: 'Done' }
     });
