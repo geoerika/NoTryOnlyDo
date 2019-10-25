@@ -2,8 +2,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// this will be our data base's data structure
-const DataSchema = new Schema(
+// this will be our todo data structure
+const todoSchema = new Schema(
   {
     title: { type: String, required: 'Title is required'},
     description: String,
@@ -14,4 +14,4 @@ const DataSchema = new Schema(
 );
 
 // export the new Schema so we could modify it using Node.js
-module.exports = mongoose.model("Todo", DataSchema);
+module.exports = mongoose.model("Todo", todoSchema);

@@ -10,13 +10,9 @@ router.get('/getData', (req, res) => {
   });
 });
 
-
 // adds new data in our database
 router.post('/postData', (req, res) => {
   let data = new Todo();
-
-  console.log('req.body: ', req.body);
-
   const { title, description, status, dueDate } = req.body;
 
   if (!title) {
@@ -38,7 +34,6 @@ router.post('/postData', (req, res) => {
 
 //removes existing data in our database
 router.delete('/deleteData', (req, res) => {
-  console.log('req body: ', req.body);
   const { _id } = req.body;
   Todo.findByIdAndRemove(_id, (err) => {
     if (err) return res.send(err);
