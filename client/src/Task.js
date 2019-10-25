@@ -3,32 +3,52 @@ import React, {Component} from 'react';
 class Task extends Component {
 
   transformDate = date => {
-    return date.toString().split('T')[0];
+    if (date) {
+      return date.toString().split('T')[0];
+    } else {
+      return date;
+    }
+  };
+
+  deleteTodo = () => {
+    this.props.deleteDataInDB(this.props.task._id);
+  };
+
+  updateStatus = () => {
+    this.props.updateStatusInDB(this.props.task._id);
   };
 
   render() {
-    console.log('this.props: ', this.props);
+
     let taskItem = null;
-    console.log(new Date());
-    console.log((new Date()).getTime());
-    console.log(new Date(this.props.task.dueDate));
-     console.log((new Date(this.props.task.dueDate)).getTime());
-    let overdue = (new Date(this.props.task.dueDate)).getTime() - (new Date()).getTime();
-    console.log('overdue: ', overdue);
+    let overdue = '';
+
+    if (this.props.task.dueDate) {
+      overdue = (new Date(this.props.task.dueDate)).getTime() - (new Date()).getTime();
+    };
+
+    let showDone = 'visible';
+    if (this.props.task.status === 'Done') {
+      showDone = 'invisible';
+    };
+
     let cardItem = <div className="card-body">
-                    <h5 className="card-title">{this.props.task.title}</h5>
-                    <hr/>
-                    <p className="card-textarea">{this.props.task.description}</p>
-                    <p className="card-text">{this.props.task.status}</p>
-                    <p className="card-text">Due date: {this.transformDate(this.props.task.dueDate)}</p>
-                    <button type="button" className="btn btn-primary btn-sm">Update</button>
-                    <button type="button" className="btn btn-danger btn-sm float-right">Delete</button>
-                  </div>
+                      <h6 className="card-title font-weight-bold">{this.props.task.title}</h6>
+                      <hr/>
+                      <p className="card-textarea">{this.props.task.description}</p>
+                      <p className="card-text"><small>Due date: {this.transformDate(this.props.task.dueDate)}</small></p>
+                      <div className="card-footer bg-transparent">
+                        <button type="button" className={`btn btn-primary btn-sm float-left ${showDone}`}
+                                              onClick={this.updateStatus}>Done</button>
+                        <button type="button" className="btn btn-danger btn-sm float-right"
+                                              onClick={this.deleteTodo}>Delete</button>
+                      </div>
+                    </div>;
     if((this.props.status === 'Pending') && (this.props.task.status === 'Pending')) {
-      if(overdue > 0 ) {
+      if(overdue > 0  || !this.props.task.dueDate) {
         taskItem =
           <div>
-            <div className='card bg-light mb-3' style={{width: '18rem'}}>
+            <div className='card bg-light mb-3' style={{width: '16rem'}}>
               {cardItem}
             </div>
             <div style={{height: '3px'}}>
@@ -37,7 +57,7 @@ class Task extends Component {
       } else {
         taskItem =
           <div>
-            <div className='card bg-warning mb-3' style={{width: '18rem'}}>
+            <div className='card bg-warning mb-3' style={{width: '16rem'}}>
              {cardItem}
             </div>
             <div style={{height: '3px'}}>
@@ -49,7 +69,7 @@ class Task extends Component {
     if((this.props.status === 'Done') && (this.props.task.status === 'Done')) {
       taskItem =
         <div>
-          <div className='card text-white bg-success mb-3' style={{width: '18rem'}}>
+          <div className='card text-white bg-success mb-3' style={{width: '16rem'}}>
             {cardItem}
           </div>
           <div style={{height: '3px'}}>
