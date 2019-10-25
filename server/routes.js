@@ -36,4 +36,23 @@ router.post('/postData', (req, res) => {
   });
 });
 
+//removes existing data in our database
+router.delete('/deleteData', (req, res) => {
+  console.log('req body: ', req.body);
+  const { _id } = req.body;
+  Todo.findByIdAndRemove(_id, (err) => {
+    if (err) return res.send(err);
+    return res.json({ success: true });
+  });
+});
+
+//updates data status in the database
+router.put('/updateDataStatus', (req, res) => {
+  const { _id, update } = req.body;
+  Todo.findByIdAndUpdate(_id, update, (err) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
 module.exports = router;
