@@ -6,15 +6,16 @@ const logger = require('morgan');
 const config = require('./config/dev');
 const Todo = require('./models/todo');
 const router = require('./routes');
+const path = require('path');
 
-const API_PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
 
 mongoose.set('useUnifiedTopology', true);
 
 // connects the backend code with the database
-mongoose.connect(config.DB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || config.DB_URI, { useNewUrlParser: true });
 
 let db = mongoose.connection;
 
@@ -31,5 +32,13 @@ app.use(logger('dev'));
 // append /api for our http requests
 app.use('/api', router);
 
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 // launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+app.listen(PORT, () => console.log(`LISTENING ON PORT ${PORT}`));

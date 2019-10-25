@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "heroku-postbuild": "cd vlient && npm install && nom run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Erika Szabo",
