@@ -4,24 +4,35 @@ import Task from './Task.js';
 // functional component which receives the list of tasks and maps them to Task component for displaying
 class TaskList extends Component {
 
+  //orders a list of tasks from older tasks to younger
+  orderTodoList= (todoList) => {
+    todoList.sort((a,b) => {
+      return a.dueDate >= b.dueDate ? 1 : -1;
+    });
+    console.log('todoList: ', todoList);
+    return todoList;
+  };
+
   render() {
     let toDoList = [];
+    console.log('this.props.tasks: ', this.props.tasks);
     if (this.props.tasks.length > 0) {
-      console.log('this.props.tasks: ', this.props.tasks);
-      toDoList = this.props.tasks.map(task => (
-      <Task key={task._id} task={task} status={this.props.status}/>
+      toDoList = this.orderTodoList(this.props.tasks);
+      console.log('toDoList: ', toDoList);
+      toDoList = toDoList.map(task => (
+      <Task key={task._id} task={task} status={this.props.status}
+            deleteDataInDB={this.props.deleteDataInDB}
+            updateStatusInDB={this.props.updateStatusInDB}/>
       ));
     }
-    console.log('toDoList: ', toDoList);
 
     return (
-
-      <ul>
+      <div className='text-center'>
         {this.props.tasks.length <= 0
-          ? 'Nothing to do yet!'
-          : toDoList
+          ? <h6 className='text-info'>No Tasks!!</h6>
+          : <ul>{toDoList}</ul>
         }
-      </ul>
+      </div>
     );
   }
 }
