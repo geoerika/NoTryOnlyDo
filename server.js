@@ -15,7 +15,7 @@ app.use(cors());
 mongoose.set('useUnifiedTopology', true);
 
 // connects the backend code with the database
-mongoose.connect(process.env.MONGODB_URI || config.DB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.PROD_MONGODB || config.DB_URI, { useNewUrlParser: true });
 
 let db = mongoose.connection;
 
@@ -36,7 +36,7 @@ if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
   app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resove(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
