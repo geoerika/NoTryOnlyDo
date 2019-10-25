@@ -43,7 +43,6 @@ class AddTask extends Component {
 
   //sends data to method in the App component which will send data to the database
   postTodo = (async () => {
-    console.log('this.state: ', this.state);
     await this.props.postDataToDB(this.state.title, this.state.description,
                                   this.state.status, this.state.dueDate);
     this.resetState();
