@@ -1,5 +1,10 @@
 # NoTryOnlyDo
 
+NoTryOnlyDo is a simple to do list application, which records and displays tasks.
+
+## Final Product
+
+!["Screenshot of Tweeter Compose page"](https://github.com/geoerika/tweeter/blob/master/docs/tweeter-compose-too-long.png)
 
 ## Getting Started
 
