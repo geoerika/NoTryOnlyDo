@@ -9,20 +9,17 @@ class TaskList extends Component {
     todoList.sort((a,b) => {
       return a.dueDate >= b.dueDate ? 1 : -1;
     });
-    console.log('todoList: ', todoList);
     return todoList;
   };
 
   render() {
     let toDoList = [];
-    console.log('this.props.tasks: ', this.props.tasks);
     if (this.props.tasks.length > 0) {
       toDoList = this.orderTodoList(this.props.tasks);
-      console.log('toDoList: ', toDoList);
       toDoList = toDoList.map(task => (
-      <Task key={task._id} task={task} status={this.props.status}
-            deleteDataInDB={this.props.deleteDataInDB}
-            updateStatusInDB={this.props.updateStatusInDB}/>
+        <Task key={task._id} task={task} status={this.props.status}
+              deleteDataInDB={this.props.deleteDataInDB}
+              updateStatusInDB={this.props.updateStatusInDB}/>
       ));
     }
 
