@@ -9,11 +9,6 @@ class App extends Component {
   // initialize our state
   state = {
     todoList: [],
-    // id: 0,
-    // title: null,
-    // description: null,
-    // status: 'Pending',
-    // dueDate: new Date(),
     intervalIsSet: false,
     idToDelete: null,
     idToUpdate: null,
@@ -23,7 +18,7 @@ class App extends Component {
   componentDidMount() {
     this.getTodos();
     if (!this.state.intervalIsSet) {
-      let interval = setInterval(this.getTodos, 1500);
+      let interval = setInterval(this.getTodos, 1000);
       this.setState({ intervalIsSet: interval });
     }
   }
@@ -45,11 +40,6 @@ class App extends Component {
 
   //create new record in the database
   postDataToDB = (title, description, status, dueDate) => {
-    // let currentIds = this.state.todolist.map((data) => data.id);
-    // let id = 0;
-    // while (currentIds.includes(id)) {
-    //   ++id;
-    // }
 
     axios.post('http://localhost:3001/api/postData', {
       title: title,
@@ -59,15 +49,25 @@ class App extends Component {
     });
   };
 
-  handleChange = date => {
-    this.setState({
-      dueDate: date
+  //delete a task in the database
+  deleteDataInDB = (taskId) => {
+    axios.delete('http://localhost:3001/api/deleteData', {
+      data: {
+        _id: taskId,
+      },
+    });
+  };
+
+  //updates the status of a task in the database
+  updateStatusInDB = (taskId) => {
+    axios.put('http://localhost:3001/api/updateDataStatus', {
+      _id: taskId,
+      update: { status: 'Done' }
     });
   };
 
   render() {
-    const { todoList } = this.state;
-    console.log('todoList: ', todoList);
+    let { todoList } = this.state;
     return (
       <div>
         <Navbar/>
@@ -78,12 +78,16 @@ class App extends Component {
               <AddTask postDataToDB={this.postDataToDB}/>
             </div>
             <div className="col col-md-4">
-              <h5 className='text-center'>Pending Tasks</h5>
-              <TaskList tasks={todoList} status='Pending'/>
+              <h5 className='text-center font-weight-bold'>Pending Tasks</h5>
+              <TaskList tasks={todoList} status='Pending'
+                        deleteDataInDB={this.deleteDataInDB}
+                        updateStatusInDB={this.updateStatusInDB}/>
             </div>
             <div className="col col-md-4">
-              <h5 className='text-center'>Completed Tasks</h5>
-              <TaskList tasks={todoList} status='Done'/>
+              <h5 className='text-center font-weight-bold'>Completed Tasks</h5>
+              <TaskList tasks={todoList} status='Done'
+                        deleteDataInDB={this.deleteDataInDB}
+                        updateStatusInDB={this.updateStatusInDB}/>
             </div>
           </div>
         </div>
