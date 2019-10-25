@@ -4,7 +4,7 @@ NoTryOnlyDo is a to do list one-page application, which records and displays tas
 
 ## Final Product
 
-!["Screenshot of NoTryOnlyDo home page"](https://github.com/geoerika/tweeter/blob/master/docs/tweeter-compose-too-long.png)
+!["Screenshot of NoTryOnlyDo home page"](https://github.com/geoerika/NoTryOnlyDo/blob/master/docs/Screenshot%20for%20NoTryOnlyDo%20home%20page.png)
 
 ## Getting Started
 
