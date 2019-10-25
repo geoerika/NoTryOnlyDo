@@ -15,7 +15,7 @@ app.use(cors());
 mongoose.set('useUnifiedTopology', true);
 
 // connects the backend code with the database
-mongoose.connect(process.env.PROD_MONGODB || config.DB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || config.DB_URI, { useNewUrlParser: true });
 
 let db = mongoose.connection;
 
