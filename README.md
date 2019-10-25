@@ -1,10 +1,10 @@
 # NoTryOnlyDo
 
-NoTryOnlyDo is a simple to do list application, which records and displays tasks.
+NoTryOnlyDo is a to do list one-page application, which records and displays tasks.
 
 ## Final Product
 
-!["Screenshot of Tweeter Compose page"](https://github.com/geoerika/tweeter/blob/master/docs/tweeter-compose-too-long.png)
+!["Screenshot of NoTryOnlyDo home page"](https://github.com/geoerika/tweeter/blob/master/docs/tweeter-compose-too-long.png)
 
 ## Getting Started
 
