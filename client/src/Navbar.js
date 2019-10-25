@@ -4,8 +4,8 @@ import './Navbar.css';
 function Navbar () {
 
   return (
-    <nav className='navbar navbar-light bg-light'>
-        <h5 className='navbar-brand'>No Try Only Do</h5>
+    <nav className='navbar navbar-light bg-info'>
+        <h4 className='navbar-brand text-white font-weight-bold'>No Try Only Do</h4>
     </nav>
   )
 };
