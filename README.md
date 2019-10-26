@@ -3,6 +3,8 @@
 NoTryOnlyDo is a to do list one-page application, which records and displays tasks.
 Built with JavaScript, Node.js, React, MongoDB
 
+Tasks are displayed in two columns, Pending and Completed, ordered by due date in ascending order. The overdue tasks are displayed in orange.
+
 ## Final Product
 
 !["Screenshot of NoTryOnlyDo home page"](https://github.com/geoerika/NoTryOnlyDo/blob/master/docs/Screenshot%20for%20NoTryOnlyDo%20home%20page.png)
