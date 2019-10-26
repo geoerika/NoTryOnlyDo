@@ -83,13 +83,13 @@ class App extends Component {
               <AddTask postDataToDB={this.postDataToDB}/>
             </div>
             <div className='col col-md-4'>
-              <h5 className='text-center font-weight-bold'>Pending Tasks</h5>
+              <h5 className='text-center font-weight-bold'>To do</h5>
               <TaskList tasks={todoList} status='Pending'
                         deleteDataInDB={this.deleteDataInDB}
                         updateStatusInDB={this.updateStatusInDB}/>
             </div>
             <div className='col col-md-4'>
-              <h5 className='text-center font-weight-bold'>Completed Tasks</h5>
+              <h5 className='text-center font-weight-bold'>Done</h5>
               <TaskList tasks={todoList} status='Done'
                         deleteDataInDB={this.deleteDataInDB}
                         updateStatusInDB={this.updateStatusInDB}/>
