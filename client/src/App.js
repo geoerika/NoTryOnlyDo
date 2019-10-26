@@ -38,7 +38,7 @@ class App extends Component {
 
   // fetch data from database
   getTodos = () => {
-    fetch(`${this.uri}/api/getData`)
+    fetch('https://notryonlydo.herokuapp.com//api/getData')
       .then((data) => data.json())
       .then((res) => this.setState({ todoList: res.data }));
   };
