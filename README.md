@@ -7,7 +7,7 @@ Tasks are displayed in two columns, To do and Done, ordered by due date in ascen
 
 ## Final Product
 
-!["Screenshot of NoTryOnlyDo home page"](https://github.com/geoerika/NoTryOnlyDo/blob/master/docs/Screenshot%20for%20NoTryOnlyDo%20home%20page.png)
+!["Screenshot of NoTryOnlyDo home page"](https://github.com/geoerika/NoTryOnlyDo/blob/master/docs/Screenshot%20fo%20NoTryOnlyDo%20app%20home%20page.png)
 
 ## Getting Started
 
