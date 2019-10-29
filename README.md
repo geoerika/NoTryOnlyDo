@@ -1,7 +1,9 @@
 # NoTryOnlyDo
 
 NoTryOnlyDo is a to do list one-page application, which records and displays tasks.
+
 Live at: https://notryonlydo.herokuapp.com/
+
 Built with JavaScript, Node.js, React, MongoDB, Bootstrap.
 
 Tasks are displayed in two columns, To do and Done, ordered by due date in ascending order. The overdue tasks are displayed in yellow.
